@@ -845,42 +845,20 @@
     position: relative;
   }
 
-  /* The Brooks Method — Venn-style expertise diagram */
+  /* The Brooks Method — framework triad */
   .method-diagram {
-    max-width: 540px;
+    max-width: 600px;
     width: 100%;
     height: auto;
     margin: 0 auto 60px;
     display: block;
   }
-  .method-circle { fill: var(--copper); fill-opacity: 0.14; stroke: var(--copper); stroke-width: 1.2; stroke-opacity: 0.7; }
-  .method-circle-2 { fill: var(--ink); fill-opacity: 0.08; stroke: var(--ink); stroke-width: 1.2; stroke-opacity: 0.7; }
-  .method-circle-3 { fill: var(--copper-deep); fill-opacity: 0.14; stroke: var(--copper-deep); stroke-width: 1.2; stroke-opacity: 0.7; }
-  .method-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    fill: var(--ink);
-    font-weight: 500;
-  }
-  .method-center {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 16px;
-    fill: var(--ink);
-  }
-  .method-center-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 7px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    fill: var(--copper);
-  }
-  .method-tick { fill: var(--copper); }
+  /* (legacy classes kept for reference but unused after redesign) */
+  .method-circle, .method-circle-2, .method-circle-3 { display: none; }
+  .method-label, .method-center, .method-center-sub, .method-tick { /* now defined inline in SVG */ }
 
   @media (max-width: 600px) {
-    .method-diagram { max-width: 360px; margin-bottom: 40px; }
+    .method-diagram { max-width: 380px; margin-bottom: 40px; }
   }
   .manifesto-text {
     font-family: 'Instrument Serif', serif;
@@ -1262,7 +1240,7 @@
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="num display">15+</div>
+        <div class="num display">20+</div>
         <div class="label">Years in Tech</div>
       </div>
       <div class="hero-stat">
@@ -2290,35 +2268,86 @@
 
 <!-- MANIFESTO -->
 <section class="manifesto">
-  <svg class="method-diagram" viewBox="0 0 540 420" aria-labelledby="methodTitle">
-    <title id="methodTitle">The Brooks Method — three areas of practice intersecting</title>
+  <svg class="method-diagram" viewBox="0 0 600 500" aria-labelledby="methodTitle">
+    <title id="methodTitle">The Brooks Method — three pillars converging on a unified practice</title>
 
-    <!-- Three overlapping circles -->
-    <circle class="method-circle" cx="200" cy="180" r="130" />
-    <circle class="method-circle-2" cx="340" cy="180" r="130" />
-    <circle class="method-circle-3" cx="270" cy="290" r="130" />
+    <!-- Outer triangle connecting the three pillars (dashed) -->
+    <polygon points="300,150 175,365 425,365"
+             fill="none" stroke="#B5552A" stroke-width="1"
+             stroke-dasharray="3 4" stroke-opacity="0.4" />
 
-    <!-- Domain labels (placed outside circles) -->
-    <text class="method-label" x="105" y="80" text-anchor="middle">AI Enablement</text>
-    <text class="method-label" x="435" y="80" text-anchor="middle">Cloud Strategy</text>
-    <text class="method-label" x="270" y="405" text-anchor="middle">Product Leadership</text>
+    <!-- Solid radial lines from each pillar to the center hub -->
+    <g stroke="#B5552A" stroke-width="1.3" stroke-opacity="0.65">
+      <line x1="300" y1="160" x2="300" y2="232" />
+      <line x1="186" y1="358" x2="262" y2="312" />
+      <line x1="414" y1="358" x2="338" y2="312" />
+    </g>
 
-    <!-- Decorative ticks at each domain -->
-    <circle class="method-tick" cx="105" cy="92" r="2" />
-    <circle class="method-tick" cx="435" cy="92" r="2" />
-    <circle class="method-tick" cx="270" cy="392" r="2" />
+    <!-- Center hub — The Brooks Method -->
+    <circle cx="300" cy="290" r="74" fill="none" stroke="#B5552A"
+            stroke-width="1" stroke-dasharray="2 5" stroke-opacity="0.4" />
+    <circle cx="300" cy="290" r="62" fill="#15120D" />
+    <text x="300" y="276" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="6.5"
+          letter-spacing="0.28em" fill="#B5552A" font-weight="500">— THE —</text>
+    <text x="300" y="297" text-anchor="middle"
+          font-family="Instrument Serif, serif" font-style="italic"
+          font-size="18" fill="#F1E9DA">Brooks</text>
+    <text x="300" y="316" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="8"
+          letter-spacing="0.32em" fill="#F1E9DA" font-weight="500">METHOD</text>
 
-    <!-- Center label — the practice -->
-    <text class="method-center-sub" x="270" y="208" text-anchor="middle">— The Brooks Method —</text>
-    <text class="method-center" x="270" y="232" text-anchor="middle" font-style="italic">where capability</text>
-    <text class="method-center" x="270" y="252" text-anchor="middle" font-style="italic">becomes culture</text>
+    <!-- Pillar 01 — AI Enablement (top) -->
+    <text x="300" y="68" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="6.5"
+          letter-spacing="0.28em" fill="#B5552A" font-weight="500">— I —</text>
+    <text x="300" y="92" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="11"
+          letter-spacing="0.22em" fill="#15120D" font-weight="600">AI ENABLEMENT</text>
+    <text x="300" y="110" text-anchor="middle"
+          font-family="Instrument Serif, serif" font-style="italic"
+          font-size="11" fill="#2A241B" opacity="0.65">Copilot · ChatGPT · Workflows</text>
+    <circle cx="300" cy="150" r="14" fill="none" stroke="#B5552A" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="300" cy="150" r="6" fill="#B5552A" />
 
-    <!-- Tiny corner marker — like a chart legend -->
+    <!-- Pillar 02 — Cloud Strategy (bottom-left) -->
+    <circle cx="175" cy="365" r="14" fill="none" stroke="#B5552A" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="175" cy="365" r="6" fill="#B5552A" />
+    <text x="175" y="408" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="6.5"
+          letter-spacing="0.28em" fill="#B5552A" font-weight="500">— II —</text>
+    <text x="175" y="430" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="11"
+          letter-spacing="0.22em" fill="#15120D" font-weight="600">CLOUD STRATEGY</text>
+    <text x="175" y="448" text-anchor="middle"
+          font-family="Instrument Serif, serif" font-style="italic"
+          font-size="11" fill="#2A241B" opacity="0.65">Azure · AWS · Multi-Cloud</text>
+
+    <!-- Pillar 03 — Product Leadership (bottom-right) -->
+    <circle cx="425" cy="365" r="14" fill="none" stroke="#B5552A" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="425" cy="365" r="6" fill="#B5552A" />
+    <text x="425" y="408" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="6.5"
+          letter-spacing="0.28em" fill="#B5552A" font-weight="500">— III —</text>
+    <text x="425" y="430" text-anchor="middle"
+          font-family="JetBrains Mono, monospace" font-size="11"
+          letter-spacing="0.22em" fill="#15120D" font-weight="600">PRODUCT LEADERSHIP</text>
+    <text x="425" y="448" text-anchor="middle"
+          font-family="Instrument Serif, serif" font-style="italic"
+          font-size="11" fill="#2A241B" opacity="0.65">Strategy · Coaching · Teams</text>
+
+    <!-- Top-left FIG. 01 corner mark -->
     <g transform="translate(20,20)">
       <line x1="0" y1="0" x2="14" y2="0" stroke="#B5552A" stroke-width="1" />
       <line x1="0" y1="0" x2="0" y2="14" stroke="#B5552A" stroke-width="1" />
-      <text x="20" y="11" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.16em" fill="#15120D" opacity="0.6">FIG. 01</text>
+      <text x="20" y="11" font-family="JetBrains Mono, monospace" font-size="7"
+            letter-spacing="0.16em" fill="#15120D" opacity="0.6">FIG. 01</text>
     </g>
+
+    <!-- Bottom-right caption -->
+    <text x="580" y="488" text-anchor="end"
+          font-family="Instrument Serif, serif" font-style="italic"
+          font-size="13" fill="#15120D" opacity="0.7">where capability becomes culture</text>
   </svg>
 
   <div class="manifesto-text display">
