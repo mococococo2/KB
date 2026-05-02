@@ -1,0 +1,2544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kesha Brooks — AI Adoption, Cloud Strategy & Product Leadership</title>
+<meta name="description" content="Kesha Brooks is a senior product leader and AI enablement strategist helping enterprises turn Copilot, Azure and AWS from licenses into real capability." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #15120D;
+    --ink-soft: #2A241B;
+    --cream: #F1E9DA;
+    --cream-deep: #E8DFCB;
+    --paper: #F7F1E4;
+    --copper: #B5552A;
+    --copper-deep: #8E3F1C;
+    --taupe: #8A8273;
+    --rule: rgba(21, 18, 13, 0.18);
+    --rule-strong: rgba(21, 18, 13, 0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { /* JS handles smooth scrolling now — see script at bottom */ }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 12%, rgba(181, 85, 42, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(21, 18, 13, 0.04) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .display { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.0; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 22px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    background: rgba(241, 233, 218, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .logo { font-family: 'Instrument Serif', serif; font-size: 1.45rem; letter-spacing: 0.01em; }
+  .logo .dot { color: var(--copper); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; opacity: 0.75; transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--copper); }
+  .nav-cta {
+    padding: 10px 18px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: all 0.25s;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--cream) !important; }
+
+  /* Hamburger button — hidden on desktop */
+  .nav-burger {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: all 0.25s;
+  }
+  .nav-burger:hover { background: var(--ink); color: var(--cream); }
+  .nav-burger .bars {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .nav-burger .bars span {
+    display: block; width: 14px; height: 1.5px; background: currentColor;
+  }
+
+  /* Full-screen mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    color: var(--cream);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 24px;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    overflow-y: auto;
+  }
+  .mobile-menu.open { transform: translateY(0); }
+  .mobile-menu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(241, 233, 218, 0.18);
+  }
+  .mobile-menu-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.45rem;
+    color: var(--cream);
+  }
+  .mobile-menu-logo .dot { color: var(--copper); }
+  .mobile-menu-close {
+    background: transparent;
+    border: 1px solid rgba(241, 233, 218, 0.4);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    transition: all 0.25s;
+  }
+  .mobile-menu-close:hover { background: var(--copper); border-color: var(--copper); }
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 30px 0;
+    flex-grow: 1;
+  }
+  .mobile-menu-links a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(241, 233, 218, 0.12);
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--cream);
+    transition: color 0.2s, padding 0.2s;
+  }
+  .mobile-menu-links a:hover { color: var(--copper); padding-left: 8px; }
+  .mobile-menu-links a .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--copper);
+    opacity: 0.6;
+  }
+  .mobile-menu-foot {
+    padding-top: 24px;
+    border-top: 1px solid rgba(241, 233, 218, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(241, 233, 218, 0.55);
+  }
+  .mobile-menu-foot a { color: var(--copper); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 22px; }
+    .nav-links { display: none; }
+    .nav-burger { display: inline-flex; align-items: center; }
+    body.menu-open { overflow: hidden; }
+  }
+
+  /* HERO */
+  .hero { min-height: 100vh; padding: 160px 40px 80px; position: relative; z-index: 2; }
+  .hero-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 60px; border-bottom: 1px solid var(--rule); padding-bottom: 18px;
+  }
+  .hero-meta-left { display: flex; gap: 24px; }
+  .hero-meta span { color: var(--ink-soft); }
+  .hero-title {
+    font-size: clamp(3.5rem, 11vw, 11rem);
+    line-height: 0.92; letter-spacing: -0.025em; margin-bottom: 50px;
+  }
+  .hero-title .it { font-style: italic; color: var(--copper); }
+  .hero-title .amp { font-style: italic; color: var(--taupe); font-size: 0.85em; }
+  .hero-bottom {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 80px; align-items: end; margin-top: 40px;
+  }
+  .hero-tagline {
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+    max-width: 560px; color: var(--ink-soft); line-height: 1.45;
+  }
+  .hero-tagline strong { color: var(--ink); font-weight: 600; }
+  .hero-stats { display: flex; gap: 48px; justify-content: flex-end; }
+  .hero-stat { text-align: right; }
+  .hero-stat .num {
+    font-family: 'Instrument Serif', serif; font-size: 3rem; line-height: 1; color: var(--copper);
+  }
+  .hero-stat .label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-top: 8px; color: var(--ink-soft);
+  }
+  @media (max-width: 800px) {
+    .hero { padding: 120px 22px 60px; }
+    .hero-meta { flex-direction: column; gap: 6px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { justify-content: flex-start; gap: 32px; }
+  }
+
+  /* MARQUEE */
+  .marquee {
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    overflow: hidden; background: var(--paper); padding: 22px 0;
+    position: relative; z-index: 2;
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: scroll 40s linear infinite;
+    white-space: nowrap; width: fit-content;
+  }
+  .marquee-item {
+    font-family: 'Instrument Serif', serif; font-size: 1.4rem;
+    color: var(--ink-soft); display: flex; align-items: center; gap: 60px;
+  }
+  .marquee-item::after { content: "✦"; color: var(--copper); font-size: 0.8rem; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION BASE */
+  section { padding: 120px 40px; position: relative; z-index: 2; scroll-margin-top: 70px; }
+  @media (max-width: 800px) { section { padding: 80px 22px; scroll-margin-top: 60px; } }
+
+  .section-label { display: flex; gap: 14px; align-items: center; margin-bottom: 30px; }
+  .section-label .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    color: var(--copper); font-weight: 500;
+  }
+  .section-label .line { flex: 1; height: 1px; background: var(--rule); max-width: 80px; }
+  .section-label .title {
+    font-size: 0.78rem; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600;
+  }
+
+  /* ABOUT */
+  .about { background: var(--paper); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--ink) 0%, var(--copper-deep) 80%, var(--copper) 100%);
+    position: relative; overflow: hidden; border-radius: 2px;
+  }
+  .about-portrait::before {
+    content: "KB"; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif; font-size: 14rem;
+    color: rgba(241, 233, 218, 0.12); font-style: italic;
+  }
+  .about-portrait::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(241, 233, 218, 0.18), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.3), transparent 60%);
+  }
+  .portrait-cap {
+    position: absolute; bottom: 24px; left: 24px; right: 24px;
+    color: var(--cream); display: flex; justify-content: space-between;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    z-index: 2; border-top: 1px solid rgba(241, 233, 218, 0.4); padding-top: 14px;
+  }
+  .about-copy h2 {
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    line-height: 1.02; margin-bottom: 36px; letter-spacing: -0.02em;
+  }
+  .about-copy h2 em { color: var(--copper); }
+  .about-copy p {
+    font-size: 1.08rem; margin-bottom: 22px;
+    color: var(--ink-soft); max-width: 56ch;
+  }
+  .about-copy p strong { color: var(--ink); font-weight: 600; }
+  .pull-quote {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 1.6rem; line-height: 1.3; color: var(--ink);
+    border-left: 2px solid var(--copper); padding: 8px 0 8px 24px;
+    margin: 36px 0; max-width: 50ch;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .about-portrait { aspect-ratio: 3/4; max-width: 400px; }
+  }
+
+  /* SERVICES */
+  .services-head {
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 60px; margin-bottom: 80px; align-items: end;
+  }
+  .services-head h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.98; letter-spacing: -0.02em;
+  }
+  .services-head h2 em { color: var(--copper); }
+  .services-head p { color: var(--ink-soft); font-size: 1.05rem; max-width: 50ch; }
+
+  .service-list { border-top: 1px solid var(--rule-strong); }
+  .service {
+    display: grid; grid-template-columns: 80px 1fr 2fr 1fr;
+    gap: 40px; padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start; transition: background 0.3s;
+    cursor: default; position: relative;
+  }
+  .service:hover { background: rgba(181, 85, 42, 0.04); }
+  .service:hover .service-arrow { transform: translateX(6px); color: var(--copper); }
+  .service-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    color: var(--copper); padding-top: 8px;
+  }
+  .service-name {
+    font-family: 'Instrument Serif', serif; font-size: 1.85rem; line-height: 1.05;
+  }
+  .service-desc { color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+  .service-desc .deliv {
+    display: block; font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink); margin-top: 14px; font-weight: 600;
+  }
+  .service-arrow {
+    text-align: right; font-family: 'Instrument Serif', serif;
+    font-size: 2rem; color: var(--ink-soft);
+    transition: all 0.3s; padding-top: 4px;
+  }
+  @media (max-width: 800px) {
+    .services-head { grid-template-columns: 1fr; gap: 30px; }
+    .service { grid-template-columns: 50px 1fr; gap: 16px; padding: 28px 0; }
+    .service-name { font-size: 1.4rem; grid-column: 2; }
+    .service-desc { grid-column: 1 / -1; padding-top: 8px; }
+    .service-arrow { display: none; }
+  }
+
+  /* CURRICULUM / SYLLABUS */
+  .syllabus { background: var(--cream); }
+
+  .syllabus-tabs {
+    display: flex;
+    gap: 0;
+    margin: 60px 0 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .syl-tab {
+    flex: 1;
+    min-width: 220px;
+    padding: 28px 24px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Manrope', sans-serif;
+    color: var(--ink-soft);
+    transition: all 0.25s;
+    position: relative;
+    border-radius: 0;
+  }
+  .syl-tab:last-child { border-right: none; }
+  .syl-tab:hover { background: var(--paper); color: var(--ink); }
+  .syl-tab.active { background: var(--ink); color: var(--cream); }
+  .syl-tab.active .syl-tab-num { color: var(--copper); }
+  .syl-tab.active .syl-tab-meta { color: rgba(241, 233, 218, 0.65); }
+
+  .syl-tab-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .syl-tab-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .syl-tab-meta {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    opacity: 0.85;
+  }
+
+  .syl-panel { display: none; padding-top: 50px; }
+  .syl-panel.active { display: block; }
+
+  .syl-meta-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    margin-bottom: 50px;
+  }
+  .syl-meta-item {
+    padding: 22px 24px;
+    border-right: 1px solid var(--rule);
+  }
+  .syl-meta-item:last-child { border-right: none; }
+  .syl-meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 8px;
+  }
+  .syl-meta-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem;
+    line-height: 1.1;
+  }
+
+  .syl-modules { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule-strong); }
+  .syl-module {
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.25s;
+  }
+  .syl-module:hover { background: var(--paper); }
+  .syl-module.open { background: var(--paper); }
+  .syl-module-head {
+    display: grid;
+    grid-template-columns: 90px 1fr auto auto;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    cursor: pointer;
+  }
+  .syl-module-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--copper);
+    text-align: center;
+  }
+  .syl-module-title-wrap { min-width: 0; }
+  .syl-module-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.7rem;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .syl-module-tagline {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .syl-module-duration {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    white-space: nowrap;
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+  }
+  .syl-module-toggle {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    color: var(--copper);
+    width: 32px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .syl-module.open .syl-module-toggle { transform: rotate(45deg); }
+
+  .syl-module-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .syl-module.open .syl-module-body { max-height: 1000px; }
+
+  .syl-module-content {
+    padding: 0 0 36px 122px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .syl-block-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .syl-block ul { list-style: none; }
+  .syl-block li {
+    padding: 8px 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+  }
+  .syl-block li::before {
+    content: "→";
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--copper);
+    flex-shrink: 0;
+  }
+  .syl-block .takeaway {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+    border-left: 2px solid var(--copper);
+    padding-left: 16px;
+  }
+
+  .syl-cta {
+    margin-top: 50px;
+    padding: 30px 36px;
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    transition: background 0.25s;
+  }
+  .syl-cta:hover { background: var(--ink-soft); }
+  .syl-cta-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+  .syl-cta-text em { color: var(--copper); font-style: italic; }
+  .syl-cta-arrow {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.2rem;
+    color: var(--copper);
+    transition: transform 0.25s;
+  }
+  .syl-cta:hover .syl-cta-arrow { transform: translateX(8px); }
+
+  @media (max-width: 900px) {
+    .syllabus-tabs { flex-direction: column; }
+    .syl-tab { min-width: 0; border-right: none; border-bottom: 1px solid var(--rule); }
+    .syl-tab:last-child { border-bottom: none; }
+    .syl-meta-bar { grid-template-columns: 1fr 1fr; }
+    .syl-meta-item:nth-child(2) { border-right: none; }
+    .syl-meta-item:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .syl-module-head {
+      grid-template-columns: 60px 1fr auto;
+      gap: 16px;
+      padding: 24px 0;
+    }
+    .syl-module-num { font-size: 2rem; }
+    .syl-module-title { font-size: 1.3rem; }
+    .syl-module-duration { display: none; }
+    .syl-module-content {
+      padding: 0 0 28px 76px;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .syl-cta { flex-direction: column; text-align: center; gap: 16px; padding: 24px; }
+  }
+
+  /* PRICING TIERS */
+  .investment { background: var(--paper); }
+  .tier-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border-top: 1px solid var(--rule-strong);
+    border-left: 1px solid var(--rule-strong); margin-top: 60px;
+  }
+  .tier {
+    border-right: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 50px 38px; background: var(--cream);
+    display: flex; flex-direction: column;
+    position: relative; transition: background 0.3s;
+  }
+  .tier:hover { background: var(--paper); }
+  .tier.featured { background: var(--ink); color: var(--cream); }
+  .tier.featured:hover { background: var(--ink-soft); }
+  .tier.featured .tier-number,
+  .tier.featured .tier-price-currency,
+  .tier.featured .tier-bullet::before { color: var(--copper); }
+  .tier.featured .tier-list li { border-color: rgba(241, 233, 218, 0.18); }
+  .tier.featured .tier-cta { background: var(--copper); border-color: var(--copper); color: var(--cream); }
+  .tier.featured .tier-cta:hover { background: var(--copper-deep); border-color: var(--copper-deep); }
+
+  .tier-badge {
+    position: absolute; top: -1px; right: 24px;
+    background: var(--copper); color: var(--cream);
+    padding: 6px 14px; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .tier-number {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 16px;
+  }
+  .tier-name {
+    font-family: 'Instrument Serif', serif; font-size: 2.4rem;
+    line-height: 1; margin-bottom: 12px;
+  }
+  .tier-name em { color: var(--copper); font-style: italic; }
+  .tier-pitch {
+    font-size: 0.95rem; line-height: 1.5; margin-bottom: 32px;
+    opacity: 0.78; min-height: 64px;
+  }
+  .tier-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .tier-price-currency {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+    color: var(--copper); align-self: flex-start; margin-top: 12px;
+  }
+  .tier-price-amount {
+    font-family: 'Instrument Serif', serif; font-size: 3.4rem;
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .tier-price-unit { font-size: 0.85rem; opacity: 0.7; }
+  .tier-price-note {
+    font-size: 0.78rem; opacity: 0.65;
+    letter-spacing: 0.04em; margin-bottom: 32px;
+  }
+  .tier-list { list-style: none; margin-bottom: 36px; flex-grow: 1; }
+  .tier-list li {
+    padding: 14px 0; border-top: 1px solid var(--rule);
+    font-size: 0.92rem; line-height: 1.5;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .tier-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .tier-bullet::before {
+    content: "→"; color: var(--copper);
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    margin-right: 8px; flex-shrink: 0;
+  }
+  .tier-cta {
+    display: inline-flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 16px 22px;
+    border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.25s; border-radius: 0;
+  }
+  .tier-cta:hover { background: var(--ink); color: var(--cream); }
+  .tier-cta .arrow {
+    font-family: 'Instrument Serif', serif; font-size: 1.3rem;
+    transition: transform 0.25s;
+  }
+  .tier-cta:hover .arrow { transform: translateX(4px); }
+  .tier-microcopy {
+    margin-top: 60px; padding: 24px 30px;
+    border: 1px solid var(--rule); background: var(--cream);
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 24px; align-items: center;
+    font-size: 0.92rem; color: var(--ink-soft); line-height: 1.5;
+  }
+  .tier-microcopy .icon {
+    font-family: 'Instrument Serif', serif; font-size: 2.2rem;
+    color: var(--copper); font-style: italic; line-height: 1;
+  }
+  @media (max-width: 1000px) {
+    .tier-grid { grid-template-columns: 1fr; }
+    .tier-pitch { min-height: 0; }
+    .tier-microcopy { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* PROCESS */
+  .process { background: var(--cream-deep); }
+  .process-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border-top: 1px solid var(--rule-strong); margin-top: 60px;
+  }
+  .process-step {
+    border-right: 1px solid var(--rule);
+    padding: 36px 26px; position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step .num {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 4rem; line-height: 1;
+    color: var(--copper); margin-bottom: 24px;
+  }
+  .process-step h3 {
+    font-family: 'Instrument Serif', serif; font-size: 1.5rem;
+    line-height: 1.1; margin-bottom: 14px;
+  }
+  .process-step p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; }
+  .process-step .timing {
+    margin-top: 18px; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--copper);
+  }
+  @media (max-width: 800px) {
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .process-step:nth-child(even) { border-right: none; }
+    .process-step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  }
+
+  /* CREDENTIALS */
+  .credentials {
+    background: var(--ink); color: var(--cream); padding: 100px 40px;
+  }
+  .credentials .section-label .num { color: var(--copper); }
+  .credentials .section-label .title { color: var(--cream); }
+  .credentials .section-label .line { background: rgba(241, 233, 218, 0.2); }
+  .cred-grid {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 80px; align-items: start;
+  }
+  .cred-grid h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .cred-grid h2 em { color: var(--copper); }
+  .cred-list { display: grid; gap: 30px; }
+  .cred-row {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 40px; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(241, 233, 218, 0.15);
+  }
+  .cred-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--copper); padding-top: 4px;
+  }
+  .cred-content { font-size: 1.05rem; line-height: 1.5; }
+  .cred-content strong { display: block; margin-bottom: 6px; font-weight: 600; }
+  .cred-content span { color: rgba(241, 233, 218, 0.7); }
+  @media (max-width: 800px) {
+    .credentials { padding: 70px 22px; }
+    .cred-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cred-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    background: var(--cream-deep);
+    text-align: center; padding: 140px 40px;
+  }
+  .manifesto-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 4vw, 3.4rem);
+    line-height: 1.15; letter-spacing: -0.015em;
+    max-width: 22ch; margin: 0 auto;
+  }
+  .manifesto-text em { color: var(--copper); }
+  .manifesto-attrib {
+    margin-top: 50px; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* SPEAKING */
+  .speaking-head {
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 60px; margin-bottom: 60px; align-items: end;
+  }
+  .speaking-head h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.98; letter-spacing: -0.02em;
+  }
+  .speaking-head h2 em { color: var(--copper); }
+  .speaking-topics {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0; border-top: 1px solid var(--rule-strong);
+    border-left: 1px solid var(--rule-strong); margin-bottom: 80px;
+  }
+  .speaking-topic {
+    padding: 36px 32px;
+    border-right: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .topic-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 12px;
+  }
+  .topic-title {
+    font-family: 'Instrument Serif', serif; font-size: 1.7rem;
+    line-height: 1.1; margin-bottom: 14px;
+  }
+  .topic-desc { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0; border-top: 1px solid var(--rule-strong);
+    border-left: 1px solid var(--rule-strong);
+  }
+  .testi {
+    padding: 50px 40px;
+    border-right: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--paper);
+  }
+  .testi-quote {
+    font-family: 'Instrument Serif', serif; font-size: 1.45rem;
+    line-height: 1.3; margin-bottom: 28px;
+  }
+  .testi-quote::before {
+    content: "“"; color: var(--copper); font-size: 1.5em;
+    line-height: 0; vertical-align: -0.2em; margin-right: 4px;
+  }
+  .testi-attrib {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .testi-attrib strong {
+    color: var(--copper); display: block; margin-bottom: 4px; font-weight: 500;
+  }
+  @media (max-width: 800px) {
+    .testimonials-grid, .speaking-topics { grid-template-columns: 1fr; }
+    .testi { padding: 36px 24px; }
+    .speaking-head { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  /* FAQ */
+  .faq { background: var(--paper); }
+  .faq-grid {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 80px; align-items: start;
+  }
+  .faq-grid h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .faq-grid h2 em { color: var(--copper); }
+  .faq-list { border-top: 1px solid var(--rule-strong); }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer; transition: background 0.2s;
+  }
+  .faq-item:hover { background: rgba(181, 85, 42, 0.03); }
+  .faq-q {
+    padding: 26px 0; display: flex;
+    justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .faq-q-text {
+    font-family: 'Instrument Serif', serif; font-size: 1.4rem;
+    line-height: 1.2; color: var(--ink);
+  }
+  .faq-toggle {
+    font-family: 'Instrument Serif', serif; font-size: 1.6rem;
+    color: var(--copper); flex-shrink: 0;
+    transition: transform 0.3s; width: 28px; text-align: center;
+  }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    color: var(--ink-soft); font-size: 1rem; line-height: 1.6;
+  }
+  .faq-item.open .faq-a { max-height: 400px; padding: 0 0 28px 0; }
+  .faq-a p { max-width: 60ch; }
+  @media (max-width: 800px) {
+    .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .faq-q-text { font-size: 1.15rem; }
+  }
+
+  /* NEWSLETTER */
+  .newsletter { background: var(--cream-deep); padding: 120px 40px; }
+  .newsletter-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .newsletter h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1; letter-spacing: -0.02em; margin-bottom: 22px;
+  }
+  .newsletter h2 em { color: var(--copper); }
+  .newsletter p {
+    font-size: 1.1rem; color: var(--ink-soft);
+    max-width: 56ch; margin: 0 auto 40px; line-height: 1.55;
+  }
+  .newsletter-form {
+    display: flex; gap: 0; max-width: 520px; margin: 0 auto;
+    border: 1px solid var(--ink); background: var(--cream);
+  }
+  .newsletter-form input {
+    flex: 1; padding: 18px 22px;
+    border: none; background: transparent;
+    font-family: 'Manrope', sans-serif; font-size: 1rem;
+    color: var(--ink); outline: none;
+  }
+  .newsletter-form input::placeholder { color: var(--taupe); }
+  .newsletter-form button {
+    padding: 0 32px; border: none; border-left: 1px solid var(--ink);
+    background: var(--ink); color: var(--cream);
+    font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.25s;
+  }
+  .newsletter-form button:hover { background: var(--copper); }
+  .newsletter-fineprint {
+    margin-top: 18px; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.08em;
+    color: var(--ink-soft); opacity: 0.7;
+  }
+  @media (max-width: 600px) {
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form button { border-left: none; border-top: 1px solid var(--ink); padding: 16px; }
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--ink); color: var(--cream);
+    padding: 120px 40px 60px; position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: ""; position: absolute;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--copper) 0%, transparent 70%);
+    opacity: 0.18; border-radius: 50%;
+  }
+  .contact .section-label .num { color: var(--copper); }
+  .contact .section-label .title { color: var(--cream); }
+  .contact .section-label .line { background: rgba(241, 233, 218, 0.2); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; align-items: start; position: relative;
+  }
+  .contact-headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
+    line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 40px;
+  }
+  .contact-headline em { color: var(--copper); }
+  .contact-intro {
+    font-size: 1.05rem; color: rgba(241, 233, 218, 0.78);
+    line-height: 1.55; max-width: 44ch; margin-bottom: 50px;
+  }
+  .contact-direct {
+    display: grid; gap: 0;
+    border-top: 1px solid rgba(241, 233, 218, 0.18);
+  }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(241, 233, 218, 0.18);
+    font-size: 1rem; transition: padding 0.3s, color 0.3s;
+  }
+  .contact-link:hover { padding-left: 12px; color: var(--copper); }
+  .contact-link .arrow { font-family: 'Instrument Serif', serif; font-size: 1.4rem; }
+  .contact-link .meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+    letter-spacing: 0.12em; color: rgba(241, 233, 218, 0.5); margin-bottom: 4px;
+  }
+
+  .contact-form {
+    background: rgba(241, 233, 218, 0.05); padding: 40px;
+    border: 1px solid rgba(241, 233, 218, 0.18);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--copper); margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    background: rgba(241, 233, 218, 0.04);
+    border: 1px solid rgba(241, 233, 218, 0.22);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif; font-size: 0.95rem;
+    transition: border 0.2s, background 0.2s; border-radius: 0;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none; border-color: var(--copper);
+    background: rgba(241, 233, 218, 0.08);
+  }
+  .form-group select {
+    -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path fill='%23B5552A' d='M0 0l6 8 6-8z'/></svg>");
+    background-repeat: no-repeat; background-position: right 16px center;
+    padding-right: 40px;
+  }
+  .form-group select option { background: var(--ink); color: var(--cream); }
+  .form-group textarea {
+    resize: vertical; min-height: 110px;
+    font-family: 'Manrope', sans-serif;
+  }
+  .form-submit {
+    width: 100%; padding: 18px 24px;
+    background: var(--copper); border: 1px solid var(--copper);
+    color: var(--cream); font-family: 'Manrope', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.25s;
+    display: flex; justify-content: space-between;
+    align-items: center; border-radius: 0;
+  }
+  .form-submit:hover { background: var(--copper-deep); border-color: var(--copper-deep); }
+  .form-submit .arrow { font-family: 'Instrument Serif', serif; font-size: 1.3rem; }
+
+  .footer-bottom {
+    margin-top: 100px; padding-top: 30px;
+    border-top: 1px solid rgba(241, 233, 218, 0.18);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: rgba(241, 233, 218, 0.55);
+    letter-spacing: 0.04em;
+  }
+  .footer-locations { display: flex; gap: 24px; }
+  .footer-locations span::before {
+    content: "◆ "; color: var(--copper);
+    margin-right: 4px; font-size: 0.7em;
+  }
+  @media (max-width: 900px) {
+    .contact { padding: 80px 22px 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    .contact-form { padding: 28px 22px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .footer-bottom { flex-direction: column; gap: 18px; align-items: flex-start; margin-top: 60px; }
+  }
+
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .hero-title, .hero-tagline, .hero-meta, .hero-stats {
+    animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+  .hero-meta { animation-delay: 0s; }
+  .hero-title { animation-delay: 0.15s; }
+  .hero-tagline { animation-delay: 0.45s; }
+  .hero-stats { animation-delay: 0.6s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Kesha Brooks<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#practice">Practice</a>
+    <a href="#syllabus">Syllabus</a>
+    <a href="#investment">Investment</a>
+    <a href="#process">Process</a>
+    <a href="#speaking">Speaking</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </div>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu">
+    <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    Menu
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Site navigation">
+  <div class="mobile-menu-top">
+    <a href="#" class="mobile-menu-logo" data-mm-link>Kesha Brooks<span class="dot">.</span></a>
+    <button class="mobile-menu-close" id="navClose" aria-label="Close menu">Close ✕</button>
+  </div>
+  <div class="mobile-menu-links">
+    <a href="#about" data-mm-link><span>About</span><span class="num">01</span></a>
+    <a href="#practice" data-mm-link><span>Practice</span><span class="num">02</span></a>
+    <a href="#syllabus" data-mm-link><span>Syllabus</span><span class="num">03</span></a>
+    <a href="#investment" data-mm-link><span>Investment</span><span class="num">04</span></a>
+    <a href="#process" data-mm-link><span>Process</span><span class="num">05</span></a>
+    <a href="#credentials" data-mm-link><span>Credentials</span><span class="num">06</span></a>
+    <a href="#speaking" data-mm-link><span>Speaking</span><span class="num">07</span></a>
+    <a href="#faq" data-mm-link><span>Q&amp;A</span><span class="num">08</span></a>
+    <a href="#contact" data-mm-link><span>Contact</span><span class="num">09</span></a>
+  </div>
+  <div class="mobile-menu-foot">
+    <span>Washington, D.C. · Atlanta, GA</span>
+    <a href="mailto:hello@keshabrooks.com" data-mm-link>hello@keshabrooks.com</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-meta mono">
+    <div class="hero-meta-left">
+      <span>Est. 2025</span>
+      <span>—</span>
+      <span>Washington, D.C. / Atlanta</span>
+    </div>
+    <div>Independent Practice</div>
+  </div>
+
+  <h1 class="display hero-title">
+    AI adoption is a<br>
+    <span class="it">teaching</span> problem.<br>
+    I solve teaching <span class="amp">&amp;</span><br>
+    leadership problems.
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-tagline">
+      I'm <strong>Kesha Brooks</strong> — senior product leader, cloud and AI strategist, and the person enterprises call when they've bought the Copilot licenses but their teams still aren't using them. I help organizations move from <strong>buying tools</strong> to <strong>building capability</strong>.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num display">15+</div>
+        <div class="label">Years in Tech</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num display">2x</div>
+        <div class="label">Cloud Certified</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Microsoft Copilot Enablement</span>
+    <span class="marquee-item">AWS Solutions Architecture</span>
+    <span class="marquee-item">Azure Cloud Strategy</span>
+    <span class="marquee-item">Senior Product Leadership</span>
+    <span class="marquee-item">Executive Workshops</span>
+    <span class="marquee-item">Keynote Speaking</span>
+    <span class="marquee-item">Microsoft Copilot Enablement</span>
+    <span class="marquee-item">AWS Solutions Architecture</span>
+    <span class="marquee-item">Azure Cloud Strategy</span>
+    <span class="marquee-item">Senior Product Leadership</span>
+    <span class="marquee-item">Executive Workshops</span>
+    <span class="marquee-item">Keynote Speaking</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="section-label">
+    <span class="num">01 / Profile</span>
+    <span class="line"></span>
+    <span class="title">About</span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-portrait">
+      <div class="portrait-cap">
+        <span>Kesha Brooks</span>
+        <span>Founder</span>
+      </div>
+    </div>
+
+    <div class="about-copy">
+      <h2 class="display">A senior product mind with a <em>teacher's instinct</em>.</h2>
+
+      <p>
+        I've spent my career inside the engine rooms of cloud and AI — leading product as a senior PM at <strong>Microsoft</strong>, training teams on <strong>Copilot</strong>, and architecting on <strong>AWS</strong> and <strong>Azure</strong>. The pattern I keep seeing is the same one: companies are over-tooled and under-taught.
+      </p>
+
+      <p class="pull-quote display">
+        "Most enterprises don't have an AI problem. They have an adoption problem dressed up as one."
+      </p>
+
+      <p>
+        My independent practice exists for the leaders who already know the tools are powerful — they need someone who can <strong>translate capability into culture</strong>. That's what I do. With clarity, with rigor, and with the patience of someone who has actually run the workshops, shipped the products, and sat in the meetings.
+      </p>
+
+      <p>
+        Based in <strong>Washington, D.C. and Atlanta</strong>. Available globally for in-person engagements, virtual workshops, and ongoing advisory.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice">
+  <div class="section-label">
+    <span class="num">02 / Practice</span>
+    <span class="line"></span>
+    <span class="title">What I Do</span>
+  </div>
+
+  <div class="services-head">
+    <h2 class="display">Four ways<br>we can <em>work</em><br>together.</h2>
+    <p>
+      Every engagement starts with the same question: <em>what's actually getting in the way?</em> From there we shape the work — short workshop, multi-month advisory, executive coaching, or a keynote that moves the room.
+    </p>
+  </div>
+
+  <div class="service-list">
+    <div class="service">
+      <div class="service-num">→ 01</div>
+      <div class="service-name display">Copilot &amp; AI<br>Enablement</div>
+      <div class="service-desc">
+        Custom training programs and workshops that get your teams actually using the AI tools you already pay for. Built around real workflows, not generic demos. Microsoft 365 Copilot, GitHub Copilot, and AI fluency for non-technical teams.
+        <span class="deliv">Workshops · Cohort programs · Train-the-trainer</span>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+
+    <div class="service">
+      <div class="service-num">→ 02</div>
+      <div class="service-name display">Cloud &amp; Multi-Cloud<br>Strategy</div>
+      <div class="service-desc">
+        Advisory for product and engineering leaders navigating Azure, AWS, or both. Architecture reviews, migration planning, and the boring-but-critical work of cost, governance, and team enablement done right.
+        <span class="deliv">Architecture review · Strategy sprints · Fractional advisory</span>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+
+    <div class="service">
+      <div class="service-num">→ 03</div>
+      <div class="service-name display">Product Leadership<br>Coaching</div>
+      <div class="service-desc">
+        1:1 and small-cohort coaching for senior PMs and emerging product leaders — with particular care for women and people of color stepping into senior rooms. Career strategy, executive presence, and the politics of getting things shipped.
+        <span class="deliv">1:1 coaching · Cohort programs · Career strategy</span>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+
+    <div class="service">
+      <div class="service-num">→ 04</div>
+      <div class="service-name display">Keynotes &amp;<br>Workshops</div>
+      <div class="service-desc">
+        Conference keynotes, internal kickoffs, and leadership offsites on AI adoption, cloud strategy, and what the next decade of product looks like. Direct, substantive, and built to actually change what people do Monday morning.
+        <span class="deliv">Keynotes · Panels · Half-day &amp; full-day workshops</span>
+      </div>
+      <div class="service-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- SYLLABUS / CURRICULUM -->
+<section id="syllabus" class="syllabus">
+  <div class="section-label">
+    <span class="num">03 / Syllabus</span>
+    <span class="line"></span>
+    <span class="title">Sample Curriculum</span>
+  </div>
+
+  <div class="services-head">
+    <h2 class="display">A look<br>inside the <em>classroom</em>.</h2>
+    <p>
+      Three sample curricula — the actual structure, modules, and outcomes for engagements I run today. Every program gets customized to your team, but this is the shape of the work. Click any module to see what's inside.
+    </p>
+  </div>
+
+  <!-- TABS -->
+  <div class="syllabus-tabs" role="tablist">
+    <button class="syl-tab active" data-curr="copilot" role="tab">
+      <span class="syl-tab-num">Curriculum 01</span>
+      <div class="syl-tab-name display">Copilot Foundations</div>
+      <div class="syl-tab-meta">4-week cohort · Non-technical teams</div>
+    </button>
+    <button class="syl-tab" data-curr="cloud" role="tab">
+      <span class="syl-tab-num">Curriculum 02</span>
+      <div class="syl-tab-name display">Cloud Architecture Sprint</div>
+      <div class="syl-tab-meta">2-day intensive · Engineering leaders</div>
+    </button>
+    <button class="syl-tab" data-curr="leadership" role="tab">
+      <span class="syl-tab-num">Curriculum 03</span>
+      <div class="syl-tab-name display">Product Leadership Cohort</div>
+      <div class="syl-tab-meta">6-week cohort · Senior PMs</div>
+    </button>
+  </div>
+
+  <!-- PANEL 01: COPILOT -->
+  <div class="syl-panel active" data-curr="copilot">
+    <div class="syl-meta-bar">
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Format</div>
+        <div class="syl-meta-value display">Live cohort + async</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Duration</div>
+        <div class="syl-meta-value display">4 weeks</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Commitment</div>
+        <div class="syl-meta-value display">~3 hrs / week</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">For</div>
+        <div class="syl-meta-value display">Non-technical teams</div>
+      </div>
+    </div>
+
+    <div class="syl-modules">
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">i.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">The AI Mental Model</h3>
+            <p class="syl-module-tagline">Stop guessing what the AI is "thinking." Build a working understanding of what's actually happening.</p>
+          </div>
+          <span class="syl-module-duration">Week 1 · 3 hrs</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>How LLMs actually work — at the right level of detail</li>
+                <li>What Copilot can &amp; can't do, and why</li>
+                <li>How to evaluate AI output critically (not blindly)</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Live "AI literacy" demo with real workflows</li>
+                <li>Self-assessment of current AI fluency</li>
+                <li>Cohort discussion: what scared you, what surprised you</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A mental model that lets you predict, before you prompt, whether the AI will be useful for the task at hand.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">ii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Prompting as a Craft</h3>
+            <p class="syl-module-tagline">Four patterns that cover 90% of real work — taught with your actual job in the room.</p>
+          </div>
+          <span class="syl-module-duration">Week 2 · 4 hrs</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>The four core prompting patterns &amp; when to reach for each</li>
+                <li>How to iterate when the first answer is wrong</li>
+                <li>Context-setting: the single biggest lever for output quality</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Live prompting clinic with your real work problems</li>
+                <li>Build a personal prompts library you'll actually use</li>
+                <li>Peer review session: rate each other's prompts</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A personal prompting playbook tailored to your role, with 10–15 saved prompts you'll use weekly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Workflows That Actually Save Time</h3>
+            <p class="syl-module-tagline">Redesign your meetings, emails, documents, and reports around what AI is good at — measurably.</p>
+          </div>
+          <span class="syl-module-duration">Week 3 · 5 hrs</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>How to spot AI-suitable tasks in your week (and skip the rest)</li>
+                <li>Workflow redesign for meetings, email, research, and reports</li>
+                <li>How to measure your own time savings honestly</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Audit one full week of your real work</li>
+                <li>Build &amp; ship 3 new AI-powered workflows</li>
+                <li>Time-tracking before/after to quantify the gain</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">Documented time savings on your top five recurring tasks — with the workflows to keep banking that time every week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iv.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Building Your Team's AI Playbook</h3>
+            <p class="syl-module-tagline">Take what you've learned and turn it into something your whole team can use Monday morning.</p>
+          </div>
+          <span class="syl-module-duration">Week 4 · 4 hrs</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>How to scale individual fluency to team capability</li>
+                <li>Light-touch governance: what to standardize vs. leave open</li>
+                <li>Internal evangelism without becoming "the AI person"</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Co-create your team's AI handbook (template provided)</li>
+                <li>Build your team prompts library</li>
+                <li>Final presentation to the cohort</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A 10-page playbook your team can implement immediately — and a follow-up session 30 days out to see what stuck.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#contact" class="syl-cta">
+      <div class="syl-cta-text">Want this <em>customized</em> for your team's actual workflows?</div>
+      <span class="syl-cta-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- PANEL 02: CLOUD -->
+  <div class="syl-panel" data-curr="cloud">
+    <div class="syl-meta-bar">
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Format</div>
+        <div class="syl-meta-value display">In-person or virtual</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Duration</div>
+        <div class="syl-meta-value display">2 days · 16 hrs</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Group Size</div>
+        <div class="syl-meta-value display">8 – 15 leaders</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">For</div>
+        <div class="syl-meta-value display">Eng &amp; product leaders</div>
+      </div>
+    </div>
+
+    <div class="syl-modules">
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">i.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Multi-Cloud Reality Check</h3>
+            <p class="syl-module-tagline">An honest, vendor-neutral assessment of where you are — and where the real friction lives.</p>
+          </div>
+          <span class="syl-module-duration">Day 1 · AM</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Where Azure wins, where AWS wins — and why it depends</li>
+                <li>When "multi-cloud" is a strategy vs. an accident</li>
+                <li>The capability map every CTO should have on the wall</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Architecture audit of your current state</li>
+                <li>Capability mapping across business units</li>
+                <li>Honest discussion of what's working &amp; what isn't</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A one-page snapshot of your real cloud posture — strengths, gaps, and the questions you should be asking your teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">ii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Patterns That Scale</h3>
+            <p class="syl-module-tagline">Reference architectures that survive contact with reality — for the workloads you actually run.</p>
+          </div>
+          <span class="syl-module-duration">Day 1 · PM</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Reference architectures for the most common workload types</li>
+                <li>Identity, security, and networking across cloud boundaries</li>
+                <li>How to design for cost without designing against velocity</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Whiteboard sessions on three architectures from your portfolio</li>
+                <li>Review &amp; critique session with peer leaders</li>
+                <li>Pattern library handoff</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">Three refined architecture diagrams ready to hand to your engineering teams — with the rationale documented.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Governance, Security &amp; Cost</h3>
+            <p class="syl-module-tagline">The boring stuff that breaks at scale. We get specific. We assign owners.</p>
+          </div>
+          <span class="syl-module-duration">Day 2 · AM</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>FinOps fundamentals — and where most orgs lose money</li>
+                <li>Identity federation patterns across clouds</li>
+                <li>Guardrails that keep teams fast, not stuck</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Build a 90-day cost reduction plan with owners &amp; targets</li>
+                <li>Draft governance policies your team will actually follow</li>
+                <li>Security &amp; access review</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A concrete 90-day action plan with named owners, target metrics, and a check-in cadence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iv.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Migration &amp; Change Management</h3>
+            <p class="syl-module-tagline">Tech migrations fail for human reasons. Plan for the people, the politics, and the executives.</p>
+          </div>
+          <span class="syl-module-duration">Day 2 · PM</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Migration sequencing: what to move first, second, never</li>
+                <li>How to align engineering teams across orgs</li>
+                <li>How to brief executives without losing your roadmap</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Build a 12-month migration roadmap</li>
+                <li>Draft the executive update template you'll use quarterly</li>
+                <li>Stakeholder communication clinic</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">An executive-ready strategy deck and a roadmap your engineering leadership signed off on — together, in the room.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#contact" class="syl-cta">
+      <div class="syl-cta-text">Run this for <em>your leadership team</em> — on-site or virtual.</div>
+      <span class="syl-cta-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- PANEL 03: LEADERSHIP -->
+  <div class="syl-panel" data-curr="leadership">
+    <div class="syl-meta-bar">
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Format</div>
+        <div class="syl-meta-value display">Live cohort + 1:1s</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Duration</div>
+        <div class="syl-meta-value display">6 weeks</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">Cohort Size</div>
+        <div class="syl-meta-value display">8 – 12 PMs</div>
+      </div>
+      <div class="syl-meta-item">
+        <div class="syl-meta-label">For</div>
+        <div class="syl-meta-value display">Senior PMs → Leaders</div>
+      </div>
+    </div>
+
+    <div class="syl-modules">
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">i.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">From IC to Leader</h3>
+            <p class="syl-module-tagline">What changes when you stop being the smartest person in the room about your product.</p>
+          </div>
+          <span class="syl-module-duration">Week 1</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>The actual mindset shift (not the LinkedIn version)</li>
+                <li>What to delegate, what to keep, what to kill</li>
+                <li>How to lead people who know more than you do</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Personal leadership audit</li>
+                <li>Cohort discussion: the hardest part of stepping up</li>
+                <li>1:1 reflection with Kesha</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A clear-eyed read on where you are in the IC-to-leader transition — and what to focus on first.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">ii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Strategic Thinking, Operationalized</h3>
+            <p class="syl-module-tagline">How to actually do strategy — not just say the word at planning offsites.</p>
+          </div>
+          <span class="syl-module-duration">Week 2</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Frameworks that survive contact with reality</li>
+                <li>How to write a strategy doc people will actually read</li>
+                <li>The difference between strategy, vision, and roadmap</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Draft a strategy doc for your real product</li>
+                <li>Peer critique session</li>
+                <li>Revise &amp; share final version with cohort</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A strategy doc you can take to your next leadership review — battle-tested by peers and refined with feedback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iii.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">The Politics of Shipping</h3>
+            <p class="syl-module-tagline">Stakeholder management, executive presence, and how to navigate up without losing yourself.</p>
+          </div>
+          <span class="syl-module-duration">Week 3</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>How to read the room (and what to do once you have)</li>
+                <li>Building executive presence that's actually you</li>
+                <li>Saying "no" upward — diplomatically and firmly</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Stakeholder mapping for your current quarter</li>
+                <li>Role-play hard conversations</li>
+                <li>Build your own "executive update" template</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A practiced toolkit for the three hardest conversations you'll have this quarter — and the confidence to have them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">iv.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Building Product Teams</h3>
+            <p class="syl-module-tagline">Hiring, structuring, managing PMs — what to do when you become the manager of managers.</p>
+          </div>
+          <span class="syl-module-duration">Week 4</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Hiring frameworks that filter for what actually matters</li>
+                <li>Org structures that scale (and ones that won't)</li>
+                <li>Coaching PMs vs. managing them</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Design your ideal product org structure</li>
+                <li>Build your hiring rubric</li>
+                <li>Practice giving hard feedback</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A team-building playbook tailored to your context — hiring, structuring, and developing PMs at every level.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">v.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Leading in the AI Era</h3>
+            <p class="syl-module-tagline">What's changing about the PM role, what's permanent, and what you should be doing about it.</p>
+          </div>
+          <span class="syl-module-duration">Week 5</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>Where AI is genuinely changing product work — and where it isn't</li>
+                <li>How to lead a team that ships better &amp; faster with AI</li>
+                <li>The judgment skills that become more valuable, not less</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Audit your team's current AI workflow maturity</li>
+                <li>Design an AI-augmented product process</li>
+                <li>Reading list &amp; thinker map for staying current</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A practical, non-hyped point of view on AI &amp; product — and a plan for how your team works in the next 12 months.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="syl-module">
+        <div class="syl-module-head">
+          <div class="syl-module-num display">vi.</div>
+          <div class="syl-module-title-wrap">
+            <h3 class="syl-module-title">Your Next 18 Months</h3>
+            <p class="syl-module-tagline">Personal career architecture — what promotion really requires, and how to build the visible work that gets you there.</p>
+          </div>
+          <span class="syl-module-duration">Week 6</span>
+          <span class="syl-module-toggle">+</span>
+        </div>
+        <div class="syl-module-body">
+          <div class="syl-module-content">
+            <div class="syl-block">
+              <div class="syl-block-label">You'll Learn</div>
+              <ul>
+                <li>What the unwritten promotion criteria actually are</li>
+                <li>How to build a portfolio of visible, attributed work</li>
+                <li>Sponsorship vs. mentorship — and how to get both</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Activities</div>
+              <ul>
+                <li>Map your next-role criteria with brutal honesty</li>
+                <li>Build your 18-month visibility plan</li>
+                <li>Final 1:1 with Kesha to refine the plan</li>
+              </ul>
+            </div>
+            <div class="syl-block">
+              <div class="syl-block-label">Walk Away With</div>
+              <p class="takeaway">A personal 18-month plan with concrete milestones — and a sponsor strategy to make sure people see the work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#contact" class="syl-cta">
+      <div class="syl-cta-text">Bring this cohort to <em>your high-potential PMs</em>.</div>
+      <span class="syl-cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- INVESTMENT / PRICING -->
+<section id="investment" class="investment">
+  <div class="section-label">
+    <span class="num">04 / Investment</span>
+    <span class="line"></span>
+    <span class="title">Engagement Tiers</span>
+  </div>
+
+  <div class="services-head">
+    <h2 class="display">Three doors<br>into the <em>practice</em>.</h2>
+    <p>
+      Pricing below reflects starting points for the most common engagements. Every scope is shaped collaboratively after a discovery call — what you see is the floor, not a flat menu. Custom packages, retainers, and equity-aligned arrangements available for the right partners.
+    </p>
+  </div>
+
+  <div class="tier-grid">
+
+    <!-- TIER 1: PRIVATE -->
+    <div class="tier">
+      <div class="tier-number">01 — Private</div>
+      <h3 class="tier-name">The <em>One-on-One</em></h3>
+      <p class="tier-pitch">
+        For individual leaders, senior PMs, and founders who want direct access — career strategy, AI fluency, executive presence.
+      </p>
+
+      <div class="tier-price">
+        <span class="tier-price-currency">$</span>
+        <span class="tier-price-amount">750</span>
+        <span class="tier-price-unit">/ session</span>
+      </div>
+      <div class="tier-price-note">Packages from $4,200 (6 sessions)</div>
+
+      <ul class="tier-list">
+        <li class="tier-bullet">90-minute strategy sessions, virtual or in-person</li>
+        <li class="tier-bullet">Personalized Copilot &amp; AI fluency training</li>
+        <li class="tier-bullet">Career mapping for senior &amp; staff product roles</li>
+        <li class="tier-bullet">Async support between sessions via email</li>
+        <li class="tier-bullet">Curated reading &amp; frameworks tailored to your goals</li>
+      </ul>
+
+      <a href="#contact" class="tier-cta">
+        <span>Book Discovery Call</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- TIER 2: TEAM (FEATURED) -->
+    <div class="tier featured">
+      <div class="tier-badge">Most Booked</div>
+      <div class="tier-number">02 — Team</div>
+      <h3 class="tier-name">The <em>Workshop</em></h3>
+      <p class="tier-pitch">
+        For teams &amp; departments — the highest-leverage engagement. One day in, your people leave with new capability, not new slides.
+      </p>
+
+      <div class="tier-price">
+        <span class="tier-price-currency">$</span>
+        <span class="tier-price-amount">8,500</span>
+        <span class="tier-price-unit">/ half-day</span>
+      </div>
+      <div class="tier-price-note">Full-day from $14,000 · Cohort programs by seat</div>
+
+      <ul class="tier-list">
+        <li class="tier-bullet">Half-day or full-day intensive (up to 25 participants)</li>
+        <li class="tier-bullet">Custom-built around your team's actual workflows</li>
+        <li class="tier-bullet">Copilot, Azure, AWS, or product leadership focus</li>
+        <li class="tier-bullet">Pre-engagement diagnostic &amp; scoping call</li>
+        <li class="tier-bullet">Take-home playbook + 30-day follow-up session</li>
+        <li class="tier-bullet">Multi-cohort programs available for larger orgs</li>
+      </ul>
+
+      <a href="#contact" class="tier-cta">
+        <span>Plan a Workshop</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- TIER 3: ENTERPRISE -->
+    <div class="tier">
+      <div class="tier-number">03 — Enterprise</div>
+      <h3 class="tier-name">The <em>Partnership</em></h3>
+      <p class="tier-pitch">
+        For organizations rolling out AI at scale, navigating multi-cloud, or rebuilding the product function from the inside.
+      </p>
+
+      <div class="tier-price">
+        <span class="tier-price-currency">From</span>
+        <span class="tier-price-amount">$50K</span>
+      </div>
+      <div class="tier-price-note">Quarterly retainers · Custom enablement programs · Multi-month engagements</div>
+
+      <ul class="tier-list">
+        <li class="tier-bullet">Org-wide AI &amp; Copilot enablement programs</li>
+        <li class="tier-bullet">Fractional advisory for product &amp; cloud leadership</li>
+        <li class="tier-bullet">Multi-cloud (Azure + AWS) strategy &amp; architecture review</li>
+        <li class="tier-bullet">Train-the-trainer programs for internal champions</li>
+        <li class="tier-bullet">Executive coaching for leadership teams</li>
+        <li class="tier-bullet">Custom curriculum, recurring office hours, measured outcomes</li>
+      </ul>
+
+      <a href="#contact" class="tier-cta">
+        <span>Request Proposal</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="tier-microcopy">
+    <span class="icon">✦</span>
+    <div>
+      <strong>A note on how I price:</strong> The numbers above are starting points, not catalogs. The right engagement depends on your team's size, your timeline, and what "success" actually looks like. Book a 30-minute discovery call and we'll figure it out together — no hard sell, no canned proposal.
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="section-label">
+    <span class="num">05 / Process</span>
+    <span class="line"></span>
+    <span class="title">How We Work</span>
+  </div>
+
+  <div class="services-head">
+    <h2 class="display">Four steps<br>from <em>conversation</em><br>to capability.</h2>
+    <p>
+      No mystery, no months-long sales cycle. Here's exactly how every engagement unfolds — whether you're booking a single workshop or building a year-long program.
+    </p>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="num display">i.</div>
+      <h3>Discovery</h3>
+      <p>A 30-minute conversation. You tell me what's stuck. I ask the questions that surface the actual problem underneath the brief.</p>
+      <div class="timing">Free · 30 minutes</div>
+    </div>
+    <div class="process-step">
+      <div class="num display">ii.</div>
+      <h3>Diagnostic</h3>
+      <p>Light-touch assessment of your team, tools, and existing adoption patterns. I send back a one-page brief with a recommendation.</p>
+      <div class="timing">Same week · No commitment</div>
+    </div>
+    <div class="process-step">
+      <div class="num display">iii.</div>
+      <h3>Design &amp; Deliver</h3>
+      <p>Custom-built engagement: workshop, cohort, advisory retainer, or program. Every artifact is original to you — no recycled decks.</p>
+      <div class="timing">2–6 weeks to launch</div>
+    </div>
+    <div class="process-step">
+      <div class="num display">iv.</div>
+      <h3>Follow-through</h3>
+      <p>Adoption isn't an event — it's a behavior change. Every engagement includes follow-up touchpoints to make the new behavior stick.</p>
+      <div class="timing">30 / 60 / 90-day check-ins</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" class="credentials">
+  <div class="section-label">
+    <span class="num">06 / Receipts</span>
+    <span class="line"></span>
+    <span class="title">Credentials</span>
+  </div>
+
+  <div class="cred-grid">
+    <h2 class="display">The work behind<br>the <em>practice</em>.</h2>
+
+    <div class="cred-list">
+      <div class="cred-row">
+        <div class="cred-label">Current Role</div>
+        <div class="cred-content">
+          <strong>Senior Product Manager, Microsoft</strong>
+          <span>Leading product across cloud and AI surfaces. Internal Copilot enablement instructor across multiple business units.</span>
+        </div>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-label">Cloud Expertise</div>
+        <div class="cred-content">
+          <strong>Azure &amp; AWS — Multi-Cloud</strong>
+          <span>Hands-on architecture and product experience across both major hyperscalers. Rare combination that lets me advise without a vendor accent.</span>
+        </div>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-label">Education</div>
+        <div class="cred-content">
+          <strong>Multiple Degrees in Technology</strong>
+          <span>Formal training across computer science and information systems disciplines.</span>
+        </div>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-label">Teaching</div>
+        <div class="cred-content">
+          <strong>Microsoft Copilot Instructor</strong>
+          <span>Designs and delivers Copilot enablement curriculum for internal Microsoft teams. Trained hundreds of practitioners on practical AI workflows.</span>
+        </div>
+      </div>
+
+      <div class="cred-row">
+        <div class="cred-label">Recognition</div>
+        <div class="cred-content">
+          <strong>Senior Leadership &amp; Mentorship</strong>
+          <span>Decade-plus of supervisory roles. Active mentor for women and Black professionals navigating senior tech.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-text display">
+    Tools don't transform companies.<br>
+    <em>People who understand the tools</em> do.
+  </div>
+  <div class="manifesto-attrib">— The Brooks Method</div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="section-label">
+    <span class="num">07 / Speaking</span>
+    <span class="line"></span>
+    <span class="title">Talks &amp; Topics</span>
+  </div>
+
+  <div class="speaking-head">
+    <h2 class="display">Five talks<br>I'm giving <em>right now</em>.</h2>
+    <p>
+      Available for keynotes, internal summits, conference panels, and leadership offsites. Custom topics also welcome — if it sits at the intersection of AI, cloud, and how humans actually adopt new technology, we can build something for your event.
+    </p>
+  </div>
+
+  <div class="speaking-topics">
+    <div class="speaking-topic">
+      <div class="topic-num">Talk 01 · Keynote</div>
+      <h3 class="topic-title display">The Copilot Reality: Why Most AI Rollouts Fail</h3>
+      <p class="topic-desc">A frank look at why enterprise AI adoption is stalling — and the five things organizations that actually move the needle do differently.</p>
+    </div>
+    <div class="speaking-topic">
+      <div class="topic-num">Talk 02 · Workshop</div>
+      <h3 class="topic-title display">Building AI Fluency Without Becoming an AI Company</h3>
+      <p class="topic-desc">For non-tech-native organizations: a practical framework for getting useful work out of Copilot, ChatGPT, and friends — without rebuilding your entire stack.</p>
+    </div>
+    <div class="speaking-topic">
+      <div class="topic-num">Talk 03 · Keynote</div>
+      <h3 class="topic-title display">Multi-Cloud, Honest: When Two Hyperscalers Are Better Than One</h3>
+      <p class="topic-desc">A vendor-neutral take on Azure vs. AWS — when to pick one, when to run both, and the politics of getting your engineering org to agree.</p>
+    </div>
+    <div class="speaking-topic">
+      <div class="topic-num">Talk 04 · Panel</div>
+      <h3 class="topic-title display">Senior, Not Soft: Black Women in Product Leadership</h3>
+      <p class="topic-desc">Personal and practical — the strategies, tradeoffs, and unspoken rules of moving into senior product roles when you don't fit the default profile.</p>
+    </div>
+    <div class="speaking-topic">
+      <div class="topic-num">Talk 05 · Workshop</div>
+      <h3 class="topic-title display">Product Leadership in the AI Era</h3>
+      <p class="topic-desc">For PMs and product leaders: how the role is changing, what's actually new (and what isn't), and how to lead a team that ships better, faster, with AI.</p>
+    </div>
+    <div class="speaking-topic">
+      <div class="topic-num">Custom · Inquire</div>
+      <h3 class="topic-title display">Something Tailored to Your Audience</h3>
+      <p class="topic-desc">Have a specific theme or audience in mind? I build custom talks for industry conferences, internal kickoffs, and executive offsites. Let's talk.</p>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top: 60px;">
+    <span class="num">— Voices</span>
+    <span class="line"></span>
+    <span class="title">What People Say</span>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testi">
+      <div class="testi-quote display">
+        Kesha doesn't just teach Copilot — she teaches your team how to think about AI. Our adoption metrics moved within a month.
+      </div>
+      <div class="testi-attrib">
+        <strong>VP, Product · Fortune 500 Insurance</strong>
+        Copilot Enablement Engagement
+      </div>
+    </div>
+
+    <div class="testi">
+      <div class="testi-quote display">
+        I came in for cloud advice and left with a product strategy. She's the rare advisor who can actually do both at the same level.
+      </div>
+      <div class="testi-attrib">
+        <strong>CTO · Mid-Market SaaS</strong>
+        Multi-Cloud Strategy Sprint
+      </div>
+    </div>
+
+    <div class="testi">
+      <div class="testi-quote display">
+        Best leadership coach I've worked with. She gets the room — what it's like to be the only one in it — and she's direct about what it takes to move forward.
+      </div>
+      <div class="testi-attrib">
+        <strong>Senior PM · Big Tech</strong>
+        1:1 Coaching Cohort
+      </div>
+    </div>
+
+    <div class="testi">
+      <div class="testi-quote display">
+        Hired Kesha to keynote our internal summit. She was the most quoted speaker of the day, three months later.
+      </div>
+      <div class="testi-attrib">
+        <strong>Chief of Staff · Federal Agency</strong>
+        AI Leadership Keynote
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="section-label">
+    <span class="num">08 / Q&amp;A</span>
+    <span class="line"></span>
+    <span class="title">Common Questions</span>
+  </div>
+
+  <div class="faq-grid">
+    <h2 class="display">The things<br>everyone <em>asks</em>.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">Is this practice independent of your role at Microsoft?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>Yes. This is an independent advisory and education practice operating outside my Microsoft employment. Engagements are scoped carefully to avoid conflicts of interest and I do not represent Microsoft in any capacity through this work. Views and recommendations are my own.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">Do you only train teams that use Microsoft tools?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>No. I work in vendor-neutral mode. While I have deep Microsoft 365 Copilot and Azure expertise, I'm equally fluent in AWS and have helped clients on multi-cloud journeys. For AI enablement specifically, I work across Copilot, ChatGPT, Claude, Gemini, and the open-source landscape — whichever tools your organization actually uses.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">What's the smallest engagement you take?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>A single 90-minute 1:1 strategy session at the Private tier. For teams, the smallest typical engagement is a half-day workshop. I don't take engagements smaller than that because below a certain threshold, the work doesn't actually move outcomes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">How quickly can we start?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>1:1 coaching sessions can typically begin within 1–2 weeks of a discovery call. Workshops require 4–6 weeks of lead time to do the diagnostic and customize materials properly. Enterprise engagements are usually 6–10 weeks from first conversation to kickoff. Rush timelines available case-by-case.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">Do you travel for in-person work?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>Yes — based in Washington, D.C. and Atlanta with regular travel to both. I work in-person across the U.S. and internationally for engagements that warrant it. Travel and accommodations are typically billed at cost in addition to engagement fees, with rates discussed transparently before contracting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">Do you take advisor or equity arrangements?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>Selectively, yes. For early-stage companies where my expertise is unusually well-aligned and the relationship is genuinely strategic, I'll consider advisory roles with equity components. These are evaluated case-by-case and never replace my standard engagement structure entirely.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">What outcomes do clients typically see?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>For Copilot enablement: measurable jumps in active usage and surveyed AI fluency within 30–60 days post-engagement. For coaching: clients have moved into Director, Sr. Director, and VP roles within 6–12 months of starting work together. For cloud strategy: clearer architectural decisions, less vendor lock-in panic, more aligned engineering orgs. Specific metrics are agreed on before every engagement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-q-text">How do I know which tier is right for me?</div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">
+          <p>Book a discovery call. It's free, it's 30 minutes, and you'll leave with a clear recommendation — even if the answer is "you don't actually need me right now." I'd rather under-sell and build a real relationship than oversell and waste both our time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div class="section-label" style="justify-content: center; margin-bottom: 24px;">
+      <span class="line"></span>
+      <span class="title" style="color: var(--copper);">Field Notes</span>
+      <span class="line"></span>
+    </div>
+    <h2>Get the <em>monthly</em> dispatch.</h2>
+    <p>
+      Once a month: one substantive note on AI adoption, cloud strategy, or product leadership — written from inside the work, not from the cheap seats. No fluff, no upsells. Unsubscribe anytime.
+    </p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Connect this form to your email service (ConvertKit, Mailchimp, Beehiiv, etc.)');">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="newsletter-fineprint">
+      Read by senior leaders at Microsoft, AWS, Capital One, and beyond.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-label">
+    <span class="num">09 / Begin</span>
+    <span class="line"></span>
+    <span class="title">Work With Me</span>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-headline">
+        Let's <em>talk</em><br>about your<br>team.
+      </h2>
+      <p class="contact-intro">
+        Tell me what you're trying to figure out. I'll get back to you within two business days with a real response — not a calendar link and a form letter. Discovery calls are 30 minutes and always free.
+      </p>
+
+      <div class="contact-direct">
+        <a href="mailto:hello@keshabrooks.com" class="contact-link">
+          <div>
+            <div class="meta">Direct Email</div>
+            <div>hello@keshabrooks.com</div>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/keshabrooks523/" target="_blank" rel="noopener" class="contact-link">
+          <div>
+            <div class="meta">LinkedIn</div>
+            <div>@keshabrooks523</div>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+        <a href="#" class="contact-link">
+          <div>
+            <div class="meta">Speaking Inquiries</div>
+            <div>speaking@keshabrooks.com</div>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Connect this form to your backend, Formspree, Tally, or similar.');">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" type="email" placeholder="you@company.com" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-company">Company</label>
+          <input id="cf-company" type="text" placeholder="Where you work" />
+        </div>
+        <div class="form-group">
+          <label for="cf-tier">Engagement Type</label>
+          <select id="cf-tier">
+            <option value="">Select one —</option>
+            <option>Private — 1:1 coaching</option>
+            <option>Team — Workshop or cohort</option>
+            <option>Enterprise — Multi-month engagement</option>
+            <option>Speaking — Keynote or workshop</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cf-msg">What are you trying to figure out?</label>
+        <textarea id="cf-msg" placeholder="A few sentences is plenty. Tell me what's stuck, what you've tried, and what success looks like." required></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">
+        <span>Send Message</span>
+        <span class="arrow">→</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© 2026 Kesha Brooks. Independent advisory practice.</div>
+    <div class="footer-locations">
+      <span>Washington, D.C.</span>
+      <span>Atlanta, GA</span>
+      <span>Available globally</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('section, .marquee').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+  // Safety fallback: ensure no section can ever be permanently invisible
+  // if IntersectionObserver doesn't fire in iframe edge cases
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add('in');
+    });
+  }, 1500);
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Syllabus tab switching
+  document.querySelectorAll('.syl-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.curr;
+      document.querySelectorAll('.syl-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.syl-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.syl-panel[data-curr="' + target + '"]').classList.add('active');
+      // close any open modules in the new panel for clean state
+      document.querySelectorAll('.syl-module').forEach(m => m.classList.remove('open'));
+    });
+  });
+
+  // Syllabus module accordion (independent per module — multiple can be open)
+  document.querySelectorAll('.syl-module-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Smooth-scroll handler for all internal anchor links.
+  // Uses scrollIntoView (which respects scroll-margin-top set in CSS) for
+  // maximum reliability inside iframes and sandboxed previews.
+  const NAV_OFFSET = 70;
+  function scrollToTarget(targetEl) {
+    if (!targetEl) return;
+    try {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      // older browser fallback
+      const top = targetEl.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET;
+      window.scrollTo(0, top);
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) {
+        if (href === '#') {
+          e.preventDefault();
+          try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+          catch (err) { window.scrollTo(0, 0); }
+        }
+        return;
+      }
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      scrollToTarget(target);
+      if (history.pushState) history.pushState(null, '', href);
+    });
+  });
+
+  // Mobile menu toggle
+  const burger = document.getElementById('navBurger');
+  const closeBtn = document.getElementById('navClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function openMenu() { mobileMenu.classList.add('open'); document.body.classList.add('menu-open'); }
+  function closeMenu() { mobileMenu.classList.remove('open'); document.body.classList.remove('menu-open'); }
+  if (burger) burger.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  // close menu after clicking any link inside it
+  document.querySelectorAll('[data-mm-link]').forEach(link => {
+    link.addEventListener('click', () => {
+      // small delay so the smooth scroll begins from the menu's anchor position
+      setTimeout(closeMenu, 80);
+    });
+  });
+  // close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+  });
+</script>
+
+</body>
+</html>
