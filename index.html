@@ -203,6 +203,32 @@
 
   /* HERO */
   .hero { min-height: 100vh; padding: 160px 40px 80px; position: relative; z-index: 2; }
+
+  /* Brand seal — circular publisher's mark */
+  .seal {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+  .seal-hero {
+    top: 130px;
+    right: 40px;
+    animation: spin 60s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .seal text { fill: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .seal .seal-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 38px; fill: var(--copper); letter-spacing: -0.02em; }
+  .seal .seal-ring { fill: none; stroke: var(--ink); stroke-width: 1; opacity: 0.45; }
+  .seal .seal-dot { fill: var(--copper); }
+
+  @media (max-width: 800px) {
+    .seal-hero { width: 90px; height: 90px; top: 100px; right: 22px; }
+  }
   .hero-meta {
     display: flex; justify-content: space-between; align-items: baseline;
     margin-bottom: 60px; border-bottom: 1px solid var(--rule); padding-bottom: 18px;
@@ -286,23 +312,23 @@
     background: linear-gradient(135deg, var(--ink) 0%, var(--copper-deep) 80%, var(--copper) 100%);
     position: relative; overflow: hidden; border-radius: 2px;
   }
-  .about-portrait::before {
-    content: "KB"; position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Instrument Serif', serif; font-size: 14rem;
-    color: rgba(241, 233, 218, 0.12); font-style: italic;
+  .portrait-pattern {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
   }
   .about-portrait::after {
     content: ""; position: absolute; inset: 0;
+    z-index: 2;
     background-image:
-      radial-gradient(circle at 30% 20%, rgba(241, 233, 218, 0.18), transparent 50%),
-      radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.3), transparent 60%);
+      radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.35), transparent 60%);
+    pointer-events: none;
   }
   .portrait-cap {
     position: absolute; bottom: 24px; left: 24px; right: 24px;
     color: var(--cream); display: flex; justify-content: space-between;
     font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-    z-index: 2; border-top: 1px solid rgba(241, 233, 218, 0.4); padding-top: 14px;
+    z-index: 3; border-top: 1px solid rgba(241, 233, 218, 0.4); padding-top: 14px;
   }
   .about-copy h2 {
     font-size: clamp(2.2rem, 4.5vw, 4rem);
@@ -712,19 +738,50 @@
 
   /* PROCESS */
   .process { background: var(--cream-deep); }
+  .process-wrap { position: relative; margin-top: 60px; }
+  .process-flow {
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    width: 100%; height: 80px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .process-flow path { fill: none; stroke: var(--copper); stroke-width: 1.5; stroke-dasharray: 4 5; opacity: 0.55; }
+  .process-flow .node { fill: var(--copper); }
+  .process-flow .node-ring { fill: none; stroke: var(--copper); stroke-width: 1; opacity: 0.4; }
+  .process-flow .arrow { fill: var(--copper); }
+
   .process-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; border-top: 1px solid var(--rule-strong); margin-top: 60px;
+    gap: 0; border-top: 1px solid var(--rule-strong);
+    position: relative; z-index: 2;
+    background: var(--cream-deep);
   }
   .process-step {
     border-right: 1px solid var(--rule);
     padding: 36px 26px; position: relative;
   }
   .process-step:last-child { border-right: none; }
+  .process-step .step-marker {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid var(--copper);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cream-deep);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .process-step .step-marker::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed rgba(181, 85, 42, 0.4);
+  }
   .process-step .num {
     font-family: 'Instrument Serif', serif; font-style: italic;
-    font-size: 4rem; line-height: 1;
-    color: var(--copper); margin-bottom: 24px;
+    font-size: 2rem; line-height: 1;
+    color: var(--copper);
   }
   .process-step h3 {
     font-family: 'Instrument Serif', serif; font-size: 1.5rem;
@@ -737,9 +794,12 @@
     text-transform: uppercase; color: var(--copper);
   }
   @media (max-width: 800px) {
+    .process-flow { display: none; }
     .process-grid { grid-template-columns: 1fr 1fr; }
     .process-step:nth-child(even) { border-right: none; }
     .process-step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .process-step .step-marker { width: 48px; height: 48px; margin-bottom: 18px; }
+    .process-step .num { font-size: 1.6rem; }
   }
 
   /* CREDENTIALS */
@@ -782,6 +842,45 @@
   .manifesto {
     background: var(--cream-deep);
     text-align: center; padding: 140px 40px;
+    position: relative;
+  }
+
+  /* The Brooks Method — Venn-style expertise diagram */
+  .method-diagram {
+    max-width: 540px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 60px;
+    display: block;
+  }
+  .method-circle { fill: var(--copper); fill-opacity: 0.14; stroke: var(--copper); stroke-width: 1.2; stroke-opacity: 0.7; }
+  .method-circle-2 { fill: var(--ink); fill-opacity: 0.08; stroke: var(--ink); stroke-width: 1.2; stroke-opacity: 0.7; }
+  .method-circle-3 { fill: var(--copper-deep); fill-opacity: 0.14; stroke: var(--copper-deep); stroke-width: 1.2; stroke-opacity: 0.7; }
+  .method-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    fill: var(--ink);
+    font-weight: 500;
+  }
+  .method-center {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    fill: var(--ink);
+  }
+  .method-center-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    fill: var(--copper);
+  }
+  .method-tick { fill: var(--copper); }
+
+  @media (max-width: 600px) {
+    .method-diagram { max-width: 360px; margin-bottom: 40px; }
   }
   .manifesto-text {
     font-family: 'Instrument Serif', serif;
@@ -1126,6 +1225,21 @@
 
 <!-- HERO -->
 <header class="hero">
+  <!-- Founder's seal — slowly rotating publisher's mark -->
+  <svg class="seal seal-hero" viewBox="0 0 130 130" aria-hidden="true">
+    <defs>
+      <path id="sealCircle" d="M 65,65 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0" />
+    </defs>
+    <circle class="seal-ring" cx="65" cy="65" r="60" />
+    <circle class="seal-ring" cx="65" cy="65" r="42" />
+    <text>
+      <textPath href="#sealCircle" startOffset="0">KESHA BROOKS · INDEPENDENT PRACTICE · EST. 2025 ·  </textPath>
+    </text>
+    <circle class="seal-dot" cx="65" cy="14" r="2" />
+    <circle class="seal-dot" cx="65" cy="116" r="2" />
+    <text class="seal-mark" x="65" y="74" text-anchor="middle">KB</text>
+  </svg>
+
   <div class="hero-meta mono">
     <div class="hero-meta-left">
       <span>Est. 2025</span>
@@ -1187,6 +1301,42 @@
 
   <div class="about-grid">
     <div class="about-portrait">
+      <svg class="portrait-pattern" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="portraitGlow" cx="35%" cy="30%" r="80%">
+            <stop offset="0%" stop-color="#F1E9DA" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#F1E9DA" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <!-- Topographic concentric arcs suggesting depth, scale, layered expertise -->
+        <g fill="none" stroke="#F1E9DA" stroke-opacity="0.18" stroke-width="0.8">
+          <ellipse cx="140" cy="180" rx="40" ry="50" />
+          <ellipse cx="140" cy="180" rx="80" ry="100" />
+          <ellipse cx="140" cy="180" rx="130" ry="160" />
+          <ellipse cx="140" cy="180" rx="190" ry="230" />
+          <ellipse cx="140" cy="180" rx="260" ry="310" />
+          <ellipse cx="140" cy="180" rx="340" ry="400" />
+        </g>
+        <!-- Glow overlay -->
+        <rect x="0" y="0" width="400" height="500" fill="url(#portraitGlow)" />
+        <!-- Tick marks along bottom — like a measurement scale -->
+        <g stroke="#F1E9DA" stroke-opacity="0.35" stroke-width="1">
+          <line x1="40" y1="430" x2="40" y2="438" />
+          <line x1="80" y1="430" x2="80" y2="442" />
+          <line x1="120" y1="430" x2="120" y2="438" />
+          <line x1="160" y1="430" x2="160" y2="442" />
+          <line x1="200" y1="430" x2="200" y2="438" />
+          <line x1="240" y1="430" x2="240" y2="442" />
+          <line x1="280" y1="430" x2="280" y2="438" />
+          <line x1="320" y1="430" x2="320" y2="442" />
+          <line x1="360" y1="430" x2="360" y2="438" />
+        </g>
+        <!-- Crosshair / focal point -->
+        <g stroke="#B5552A" stroke-width="1" stroke-opacity="0.7" fill="none">
+          <circle cx="140" cy="180" r="4" fill="#B5552A" />
+          <circle cx="140" cy="180" r="14" />
+        </g>
+      </svg>
       <div class="portrait-cap">
         <span>Kesha Brooks</span>
         <span>Founder</span>
@@ -2036,30 +2186,49 @@
     </p>
   </div>
 
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="num display">i.</div>
-      <h3>Discovery</h3>
-      <p>A 30-minute conversation. You tell me what's stuck. I ask the questions that surface the actual problem underneath the brief.</p>
-      <div class="timing">Free · 30 minutes</div>
-    </div>
-    <div class="process-step">
-      <div class="num display">ii.</div>
-      <h3>Diagnostic</h3>
-      <p>Light-touch assessment of your team, tools, and existing adoption patterns. I send back a one-page brief with a recommendation.</p>
-      <div class="timing">Same week · No commitment</div>
-    </div>
-    <div class="process-step">
-      <div class="num display">iii.</div>
-      <h3>Design &amp; Deliver</h3>
-      <p>Custom-built engagement: workshop, cohort, advisory retainer, or program. Every artifact is original to you — no recycled decks.</p>
-      <div class="timing">2–6 weeks to launch</div>
-    </div>
-    <div class="process-step">
-      <div class="num display">iv.</div>
-      <h3>Follow-through</h3>
-      <p>Adoption isn't an event — it's a behavior change. Every engagement includes follow-up touchpoints to make the new behavior stick.</p>
-      <div class="timing">30 / 60 / 90-day check-ins</div>
+  <div class="process-wrap">
+    <!-- Flowing connector linking the four steps -->
+    <svg class="process-flow" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 80,40 C 250,10 350,70 500,40 C 650,10 750,70 900,40 C 1000,20 1100,50 1140,40" />
+      <g>
+        <circle class="node" cx="150" cy="40" r="3" />
+        <circle class="node-ring" cx="150" cy="40" r="9" />
+        <circle class="node" cx="450" cy="40" r="3" />
+        <circle class="node-ring" cx="450" cy="40" r="9" />
+        <circle class="node" cx="750" cy="40" r="3" />
+        <circle class="node-ring" cx="750" cy="40" r="9" />
+        <circle class="node" cx="1050" cy="40" r="3" />
+        <circle class="node-ring" cx="1050" cy="40" r="9" />
+      </g>
+      <!-- Arrowhead at end -->
+      <polygon class="arrow" points="1140,36 1148,40 1140,44" />
+    </svg>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-marker"><span class="num display">i.</span></div>
+        <h3>Discovery</h3>
+        <p>A 30-minute conversation. You tell me what's stuck. I ask the questions that surface the actual problem underneath the brief.</p>
+        <div class="timing">Free · 30 minutes</div>
+      </div>
+      <div class="process-step">
+        <div class="step-marker"><span class="num display">ii.</span></div>
+        <h3>Diagnostic</h3>
+        <p>Light-touch assessment of your team, tools, and existing adoption patterns. I send back a one-page brief with a recommendation.</p>
+        <div class="timing">Same week · No commitment</div>
+      </div>
+      <div class="process-step">
+        <div class="step-marker"><span class="num display">iii.</span></div>
+        <h3>Design &amp; Deliver</h3>
+        <p>Custom-built engagement: workshop, cohort, advisory retainer, or program. Every artifact is original to you — no recycled decks.</p>
+        <div class="timing">2–6 weeks to launch</div>
+      </div>
+      <div class="process-step">
+        <div class="step-marker"><span class="num display">iv.</span></div>
+        <h3>Follow-through</h3>
+        <p>Adoption isn't an event — it's a behavior change. Every engagement includes follow-up touchpoints to make the new behavior stick.</p>
+        <div class="timing">30 / 60 / 90-day check-ins</div>
+      </div>
     </div>
   </div>
 </section>
@@ -2121,6 +2290,37 @@
 
 <!-- MANIFESTO -->
 <section class="manifesto">
+  <svg class="method-diagram" viewBox="0 0 540 420" aria-labelledby="methodTitle">
+    <title id="methodTitle">The Brooks Method — three areas of practice intersecting</title>
+
+    <!-- Three overlapping circles -->
+    <circle class="method-circle" cx="200" cy="180" r="130" />
+    <circle class="method-circle-2" cx="340" cy="180" r="130" />
+    <circle class="method-circle-3" cx="270" cy="290" r="130" />
+
+    <!-- Domain labels (placed outside circles) -->
+    <text class="method-label" x="105" y="80" text-anchor="middle">AI Enablement</text>
+    <text class="method-label" x="435" y="80" text-anchor="middle">Cloud Strategy</text>
+    <text class="method-label" x="270" y="405" text-anchor="middle">Product Leadership</text>
+
+    <!-- Decorative ticks at each domain -->
+    <circle class="method-tick" cx="105" cy="92" r="2" />
+    <circle class="method-tick" cx="435" cy="92" r="2" />
+    <circle class="method-tick" cx="270" cy="392" r="2" />
+
+    <!-- Center label — the practice -->
+    <text class="method-center-sub" x="270" y="208" text-anchor="middle">— The Brooks Method —</text>
+    <text class="method-center" x="270" y="232" text-anchor="middle" font-style="italic">where capability</text>
+    <text class="method-center" x="270" y="252" text-anchor="middle" font-style="italic">becomes culture</text>
+
+    <!-- Tiny corner marker — like a chart legend -->
+    <g transform="translate(20,20)">
+      <line x1="0" y1="0" x2="14" y2="0" stroke="#B5552A" stroke-width="1" />
+      <line x1="0" y1="0" x2="0" y2="14" stroke="#B5552A" stroke-width="1" />
+      <text x="20" y="11" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.16em" fill="#15120D" opacity="0.6">FIG. 01</text>
+    </g>
+  </svg>
+
   <div class="manifesto-text display">
     Tools don't transform companies.<br>
     <em>People who understand the tools</em> do.
